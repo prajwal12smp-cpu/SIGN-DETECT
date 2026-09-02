@@ -3,85 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Language Detector - How It Works</title>
+    <title>How It Works - SignDetect AI Architecture</title>
+    <!-- Google Fonts & Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>SignDetect AI</h1>
+    <!-- Glassmorphic Site Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="logo-icon">🤟</span>
+                <span class="logo-text">SignDetect</span>
+                <span class="logo-badge">PIPELINE</span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="how_it_works.html" class="active"><i class="fas fa-brain"></i> How It Works</a></li>
+                <li><a href="demo.html"><i class="fas fa-video"></i> Live Studio</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="demo.html" class="btn btn-primary btn-nav-cta"><i class="fas fa-play"></i> Start Demo</a>
+                <a href="LoginSignUp.html" id="auth-link" class="btn btn-secondary" style="padding: 8px 16px; border-radius: 999px;">Sign In</a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
     </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="how_it_works.html">How It Works</a>
-        <a href="demo.html">Demo</a>
-        <a href="about.html">About</a>
-        <a href="LoginSignUp.html" id="auth-link" class="auth-btn">Logout</a>
-    </nav>
-    <section class="tech-section">
-  <h2>Technologies Used</h2>
 
-  <div class="tech-cards">
+    <main class="page-wrapper">
+        <section class="container" style="padding-top: 50px;">
+            <div class="section-header">
+                <div class="section-tag"><i class="fas fa-network-wired"></i> End-To-End Architecture</div>
+                <h1 class="section-title">How SignDetect AI Works</h1>
+                <p class="section-subtitle">A seamless machine learning pipeline translating raw optical camera pixels into real-time classified sign language speech in milliseconds.</p>
+            </div>
 
-    <div class="tech-card">
-      <h3>Python</h3>
-      <p>The primary programming language for all backend logic and ML tasks.</p>
-    </div>
-    
-    <div class="tech-card">
-      <h3>OpenCV</h3>
-      <p>Used for camera capture, image manipulation, and displaying output (in the original desktop version).</p>
-    </div>
+            <!-- 4-Step Interactive Pipeline -->
+            <div class="pipeline-steps">
+                <div class="pipeline-card">
+                    <div class="pipeline-step-badge">1</div>
+                    <div style="font-size: 1.8rem; color: var(--accent-cyan); margin: 6px 0;"><i class="fas fa-camera"></i></div>
+                    <h3>Frame Capture</h3>
+                    <p>OpenCV accesses live webcam frames (640x480) at 30 FPS, continuously converting raw BGR arrays to RGB color space for ML tensor processing.</p>
+                </div>
 
-    <div class="tech-card">
-      <h3>MediaPipe </h3>
-      <p>The powerful framework for high-fidelity hand and landmark detection.</p>
-    </div>
+                <div class="pipeline-card">
+                    <div class="pipeline-step-badge">2</div>
+                    <div style="font-size: 1.8rem; color: var(--primary); margin: 6px 0;"><i class="fas fa-hand-dots"></i></div>
+                    <h3>Landmark Extraction</h3>
+                    <p>Google MediaPipe Hands isolates the hand region and extracts 21 3D spatial keypoints (wrist, knuckles, fingertips) with sub-pixel precision.</p>
+                </div>
 
-    <div class="tech-card">
-      <h3>Scikit-learn </h3>
-      <p>The foundational library for machine learning, used here to implement the Random Forest Classifier.</p>
-    </div>
+                <div class="pipeline-card">
+                    <div class="pipeline-step-badge">3</div>
+                    <div style="font-size: 1.8rem; color: var(--accent-emerald); margin: 6px 0;"><i class="fas fa-calculator"></i></div>
+                    <h3>Feature Normalization</h3>
+                    <p>Keypoints are translated relative to the hand's minimum origin $(x - \min(X), y - \min(Y))$, constructing a 42-dimensional scale-invariant vector.</p>
+                </div>
 
-    <div class="tech-card">
-      <h3>NumPy</h3>
-      <p>Essential for efficient array and data manipulation during dataset creation and inference.</p>
-    </div>
+                <div class="pipeline-card">
+                    <div class="pipeline-step-badge">4</div>
+                    <div style="font-size: 1.8rem; color: #ec4899; margin: 6px 0;"><i class="fas fa-microchip"></i></div>
+                    <h3>Random Forest Inference</h3>
+                    <p>An ensemble of decision trees classifies the 42 features against trained patterns in &lt;1ms, predicting the sign label and vocalizing via TTS.</p>
+                </div>
+            </div>
 
-  </div>
-</section>
+            <!-- MediaPipe 21 Keypoints Anatomy Section -->
+            <div class="glass-card" style="margin-bottom: 40px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;">
+                    <div>
+                        <div class="section-tag" style="margin-bottom: 8px;"><i class="fas fa-fingerprint"></i> Biometric Mapping</div>
+                        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px;">MediaPipe 21 Hand Landmarks</h2>
+                        <p style="color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;">
+                            MediaPipe uses a machine learning pipeline consisting of a palm detector model that operates over the full image and a hand landmark model that predicts 21 3D landmarks inside the detected hand region.
+                        </p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
+                                <strong style="color: var(--accent-cyan);">0: WRIST</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">Root anchor keypoint</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
+                                <strong style="color: #a5b4fc;">1-4: THUMB</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">CMC, MCP, IP, TIP</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
+                                <strong style="color: #a5b4fc;">5-8: INDEX FINGER</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">MCP, PIP, DIP, TIP</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
+                                <strong style="color: #a5b4fc;">9-12: MIDDLE FINGER</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">MCP, PIP, DIP, TIP</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
+                                <strong style="color: #a5b4fc;">13-16: RING FINGER</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">MCP, PIP, DIP, TIP</p>
+                            </div>
+                            <div style="background: rgba(255, 255, 255, 0.04); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
+                                <strong style="color: #a5b4fc;">17-20: PINKY</strong>
+                                <p style="font-size: 0.8rem; color: var(--text-muted);">MCP, PIP, DIP, TIP</p>
+                            </div>
+                        </div>
+                    </div>
 
-    
-    <div class="container">
-        <section class="card">
-            <h2>The Detection Pipeline</h2>
-            <p>This project follows a standard Machine Learning pipeline involving data collection, preprocessing, training, and real-time inference. Your Python scripts manage each phase seamlessly.</p>
-            
-            <h3>1. Data Collection</h3>
-            <p>This script is used to capture multiple image samples for each sign (class) using the webcam. Images are stored in the `./data` directory, structured by class ID (0, 1, 2, etc.).</p>
+                    <div style="background: rgba(10, 13, 20, 0.7); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 30px; text-align: center;">
+                        <div style="font-size: 4.5rem; margin-bottom: 16px;">🖐️</div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">42 Normalized Features</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px;">
+                            Each hand contains 21 landmarks. With 2 coordinates $(x, y)$ per landmark normalized relative to bounding origin, the model receives a compact 42-dimensional vector.
+                        </p>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; background: rgba(0, 0, 0, 0.5); padding: 12px; border-radius: var(--radius-sm); color: var(--accent-cyan); text-align: left; border: 1px solid rgba(6, 182, 212, 0.2);">
+                            Vector = [x₀-min(x), y₀-min(y), x₁-min(x), y₁-min(y), ..., x₂₀-min(x), y₂₀-min(y)]
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <h3>2. Dataset Creation</h3>
-            <p>
-                This is the preprocessing step. It iterates through the collected images, uses MediaPipe Hands to detect and extract the 21 hand landmarks for each successful detection. The normalized coordinates (features) and their corresponding sign label are saved into the "data.pickle"file for training.
-                
-            </p>
+            <!-- Tech Ecosystem Grid -->
+            <div class="section-header" style="margin-top: 50px; margin-bottom: 30px;">
+                <div class="section-tag"><i class="fas fa-layer-group"></i> Technologies</div>
+                <h2 class="section-title">Core Technology Stack</h2>
+            </div>
 
-            <h3>3. Model Training</h3>
-            <p>The features from `data.pickle` are used to train a powerful classification model. We use the Random Forest Classifier (`sklearn.ensemble`) for its accuracy and robustness. The trained model is then serialized and saved as "model.p" file</p>
+            <div class="tech-grid">
+                <div class="tech-badge-card">
+                    <i class="fab fa-python tech-icon" style="color: #38bdf8;"></i>
+                    <div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 4px;">Python 3.11</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Underlying backend computation, multi-threaded video polling, and model lifecycle management.</p>
+                    </div>
+                </div>
 
-            <h3>4. Real-Time Inference</h3>
-            <p>This is the core detection script. It loads the `model.p`, accesses the webcam, and performs the following in real-time on every frame:</p>
-            <ol>
-                <li>Capture the video frame.</li>
-                <li>Process the frame with MediaPipe to get hand landmarks.</li>
-                <li>Normalize the landmark coordinates (same process as `create_dataset.py`).</li>
-                <li>Pass the normalized features to the loaded Random Forest model for classification.</li>
-                <li>Display the detected hand sign (e.g., 'HELLO', 'YES') on the screen.</li>
-            </ol>
+                <div class="tech-badge-card">
+                    <i class="fas fa-eye tech-icon" style="color: #818cf8;"></i>
+                    <div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 4px;">OpenCV Vision</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">High-performance video capture, color matrix conversions, and landmark annotation drawing.</p>
+                    </div>
+                </div>
+
+                <div class="tech-badge-card">
+                    <i class="fas fa-hands-bubbles tech-icon" style="color: #34d399;"></i>
+                    <div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 4px;">MediaPipe Hands</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">TensorFlow Lite powered real-time 3D hand keypoint extraction with state-of-the-art accuracy.</p>
+                    </div>
+                </div>
+
+                <div class="tech-badge-card">
+                    <i class="fas fa-tree tech-icon" style="color: #f59e0b;"></i>
+                    <div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 4px;">Scikit-Learn</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Ensemble Random Forest Classifier optimized for instantaneous multi-class gesture classification.</p>
+                    </div>
+                </div>
+
+                <div class="tech-badge-card">
+                    <i class="fas fa-server tech-icon" style="color: #ec4899;"></i>
+                    <div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 4px;">Flask Web Engine</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Lightweight, concurrent WSGI micro-framework streaming MJPEG video feed and real-time JSON API.</p>
+                    </div>
+                </div>
+
+                <div class="tech-badge-card">
+                    <i class="fas fa-cubes tech-icon" style="color: #a78bfa;"></i>
+                    <div>
+                        <h3 style="font-size: 1.15rem; margin-bottom: 4px;">NumPy Vectors</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-muted);">Vectorized geometric operations, array slicing, and high-speed memory-efficient data serialization.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2025 Sign Language Detector Project</p>
+    <!-- Global Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-bottom" style="border: none; padding-top: 0;">
+                <p>&copy; 2026 SignDetect AI Project. High-Precision Real-Time ASL Vision System.</p>
+                <a href="demo.html" style="color: var(--primary); text-decoration: none;">Launch Demo Studio &rarr;</a>
+            </div>
+        </div>
     </footer>
 
     <script type="module">
