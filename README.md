@@ -109,12 +109,7 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
-
-### 5. Open in Browser
-Visit **[http://127.0.0.1:5000/](http://127.0.0.1:5000/)** or navigate directly to the Live Studio at **[http://127.0.0.1:5000/demo.html](http://127.0.0.1:5000/demo.html)**.
-
----
-
+ 
 ## 🏋️ How to Train Custom Gestures
 
 To add new custom hand signs or expand the dataset:
@@ -152,19 +147,11 @@ To add new custom hand signs or expand the dataset:
 
 ---
 
-## 📸 Screenshots & Media
-
-### Live AI Studio & Gesture Recognition
-<img width="996" height="461" alt="Live Studio View" src="https://github.com/user-attachments/assets/12b786e3-d29c-4265-8a00-1a58f60d4f19" />
-
-<img width="1006" height="503" alt="Interactive Dashboard" src="https://github.com/user-attachments/assets/04a8939a-c659-428e-898b-4c19737e7543" />
-
-<img width="995" height="433" alt="Gesture Reference Catalog" src="https://github.com/user-attachments/assets/e7f1b18c-dc34-4f15-a843-00e7e3f9b977" />
-
-<img width="995" height="463" alt="Pipeline Breakdown" src="https://github.com/user-attachments/assets/0c40e80d-b57f-4cce-ab1b-97ae03950926" />
-
 ### 🎥 Demo Video
-https://github.com/user-attachments/assets/204fb656-6c0d-42ed-a11a-3fc8fdfa6dcd
+
+
+
+
 
 ---
 
@@ -177,8 +164,4 @@ https://github.com/user-attachments/assets/204fb656-6c0d-42ed-a11a-3fc8fdfa6dcd
   - [Scikit-learn](https://scikit-learn.org/) for machine learning algorithms
   - [Flask](https://flask.palletsprojects.com/) for web streaming services
 
----
 
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
