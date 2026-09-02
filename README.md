@@ -151,6 +151,10 @@ To add new custom hand signs or expand the dataset:
 
 
 
+https://github.com/user-attachments/assets/f87e34a2-19ec-4f13-98df-bb9bdaf4081e
+
+
+
 
 
 ---
