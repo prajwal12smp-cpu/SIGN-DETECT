@@ -6,7 +6,6 @@
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.10+-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.5+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.0+-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 **SignDetect AI** is an end-to-end, edge-friendly Computer Vision and Machine Learning platform that bridges the communication divide for the deaf and hard-of-hearing communities. By leveraging **Google MediaPipe Hands (21 3D spatial keypoints)** and an ensemble **Random Forest Classifier**, the system tracks hand gestures in real time, normalizes coordinate geometry, and translates static American Sign Language (ASL) gestures into text and **instant real-time spoken voice (TTS)** via standard webcams without requiring specialized hardware.
 
